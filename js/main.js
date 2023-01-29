@@ -674,33 +674,6 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 		// 	.attr("height", function(d) { return yScale(d[0]) - yScale(d[1]); })
 		// 	.attr("width", xScale.bandwidth());
 
-		var rects = groups.selectAll("rect")
-			.data(function(d) { return d; })
-			.join(
-				enter => enter.append('rect')
-	   //  		.attr("class", 'bar_item')
-				// .attr("x", d => xScale(d.label))
-				// .attr("y", d => yScale(d.value))
-				// .attr("height", 0)
-				// .attr("width", xScale.bandwidth())
-				// .attr("fill", d => colors(d.label))
-	   //  		.call(enter => enter.transition(t)
-	   //  		.attr("height", d => yScale(0) - yScale(d.value))),
-	   			.append("rect")
-				.merge(rects)
-				.transition(t),
-
-	    		update => update.transition(t)
-	    		.attr("x", function(d) { return xScale(d.data.geo); })
-				.attr("y", function(d) { return yScale(d[1]); })
-				.attr("height", function(d) { return yScale(d[0]) - yScale(d[1]); })
-				.attr("width", xScale.bandwidth()),
-	    		exit => exit.transition(t)
-	    		.attr("y", yScale(0))
-	    		.attr("height", 0)
-	    		.remove()
-			);
-
 		// rects.enter()
 		// 	.append("rect")
 		// 	.merge(rects)
@@ -710,14 +683,14 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 		// 	.attr("height", function(d) { return yScale(d[0]) - yScale(d[1]); })
 		// 	.attr("width", xScale.bandwidth());
 
-		// var rects = groups.selectAll("rect")
-		// 	.data(function(d) { return d; })
-		// 	.enter()
-		// 	.append("rect")
-		// 	.attr("x", function(d) { return x(d.data.geo); })
-		// 	.attr("y", function(d) { return y(d[1]); })
-		// 	.attr("height", function(d) { return y(d[0]) - y(d[1]); })
-		// 	.attr("width", x.bandwidth());
+		var rects = groups.selectAll("rect")
+			.data(function(d) { return d; })
+			.enter()
+			.append("rect")
+			.attr("x", function(d) { return xScale(d.data.geo); })
+			.attr("y", function(d) { return yScale(d[1]); })
+			.attr("height", function(d) { return yScale(d[0]) - yScale(d[1]); })
+			.attr("width", xScale.bandwidth());
 			
 		const yAxis = d3.axisLeft(yScale)
 		svg1.transition(t)
