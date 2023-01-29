@@ -688,8 +688,8 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 	   //  		.attr("height", d => yScale(0) - yScale(d.value))),
 	   			.append("rect")
 				.merge(rects)
-				.transition(t)
-			
+				.transition(t),
+
 	    		update => update.transition(t)
 	    		.attr("x", function(d) { return xScale(d.data.geo); })
 				.attr("y", function(d) { return yScale(d[1]); })
