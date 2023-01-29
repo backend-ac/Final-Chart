@@ -691,6 +691,12 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 		// 	.attr("y", function(d) { return yScale(d[1]); })
 		// 	.attr("height", function(d) { return yScale(d[0]) - yScale(d[1]); })
 		// 	.attr("width", xScale.bandwidth());
+
+		var xAxis1 = d3.axisBottom(xScale);
+		svg1.append("g")
+			.attr("transform", "translate(0,500)")
+			.selection()
+			.call(xAxis1);
 			
 		const yAxis = d3.axisLeft(yScale)
 		svg1.transition(t)
@@ -704,11 +710,7 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 		// 	.attr("transform", "translate(50,0)")
 		// 	.call(yAxis1);
 
-		var xAxis1 = d3.axisBottom(xScale);
-		svg1.append("g")
-			.attr("transform", "translate(0,500)")
-			.selection()
-			.call(xAxis1);
+		
 		
 		// groups.on("mouseover", function(d) {
 		// 	d3.select(this).style("fill", '#d6b312');
