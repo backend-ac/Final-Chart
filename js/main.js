@@ -709,7 +709,7 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 			.attr("transform", "translate(50,0)")
 			.call(yAxis1)
 			.selection()
-			.call(g => g.select(".tick").remove());
+			.call(g => g.select(".domain").remove());
 
 
 		// var yAxis1 = d3.axisLeft(y);
