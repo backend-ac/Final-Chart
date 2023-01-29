@@ -660,37 +660,37 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 			.data(layers)
 			.style("fill", colors1);
 
-		// var rects = groups.selectAll("rect")
-		// 	.data(function(d) { return d; });
+		var rects = groups.selectAll("rect")
+			.data(function(d) { return d; });
 
 		const t = d3.transition().duration(700);
 
-		// rects.enter()
-		// 	.append("rect")
-		// 	.merge(rects)
-		// 	.transition(t)
-		// 	.attr("x", function(d) { return xScale(d.data.geo); })
-		// 	.attr("y", function(d) { return yScale(d[1]); })
-		// 	.attr("height", function(d) { return yScale(d[0]) - yScale(d[1]); })
-		// 	.attr("width", xScale.bandwidth());
-
-		// rects.enter()
-		// 	.append("rect")
-		// 	.merge(rects)
-		// 	.transition(t)
-		// 	.attr("x", function(d) { return xScale(d.data.geo); })
-		// 	.attr("y", function(d) { return yScale(d[1]); })
-		// 	.attr("height", function(d) { return yScale(d[0]) - yScale(d[1]); })
-		// 	.attr("width", xScale.bandwidth());
-
-		var rects = groups.selectAll("rect")
-			.data(function(d) { return d; })
-			.enter()
+		rects.enter()
 			.append("rect")
+			.merge(rects)
+			.transition(t)
 			.attr("x", function(d) { return xScale(d.data.geo); })
 			.attr("y", function(d) { return yScale(d[1]); })
 			.attr("height", function(d) { return yScale(d[0]) - yScale(d[1]); })
 			.attr("width", xScale.bandwidth());
+
+		// rects.enter()
+		// 	.append("rect")
+		// 	.merge(rects)
+		// 	.transition(t)
+		// 	.attr("x", function(d) { return xScale(d.data.geo); })
+		// 	.attr("y", function(d) { return yScale(d[1]); })
+		// 	.attr("height", function(d) { return yScale(d[0]) - yScale(d[1]); })
+		// 	.attr("width", xScale.bandwidth());
+
+		// var rects = groups.selectAll("rect")
+		// 	.data(function(d) { return d; })
+		// 	.enter()
+		// 	.append("rect")
+		// 	.attr("x", function(d) { return xScale(d.data.geo); })
+		// 	.attr("y", function(d) { return yScale(d[1]); })
+		// 	.attr("height", function(d) { return yScale(d[0]) - yScale(d[1]); })
+		// 	.attr("width", xScale.bandwidth());
 			
 		const yAxis = d3.axisLeft(yScale)
 		svg1.transition(t)
