@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Abortions per regions</title>
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+	<div class="container-fluid p-5 bg-primary text-white text-center">
+	<br>	
+	<h1 style="color: rgb(255, 255, 255)">Distribution of different types of abortion between regions</h1>
+	<br>
+	<p style="text-align: center; color: rgb(255, 255, 255)">These two graphs show statistics on the number of abortions of different
+		 types for each of the following regions: Africa, Latin America, Asia, Europe and Oceania.</p>
+		<br>
+		</div>
+
+    <div class="charts-title">
+            <div style="text-align: center">
+                <p id="region">Total number of abortions</p>
+            </div>
+            
+            <div style="text-align: center; margin-left: -200px;">
+                <p id="region-name">Statistics on the number of different types of abortions around the world</p>
+            </div>
+    </div>
+	<div class="charts">
+		<div id="pie-chart">
+        </div>
+        
+		<div id="bar-chart">
+        </div>
+		<div id="desc">
+			<p style="text-align: left; color: rgb(0, 0, 0)">Pie chart shows the total number of all types of abortion for each region. Each slice of the graph is clickable if you click on a specific region, the bar chart below shows statistics on the number of safe, less safe and unsafe abortions for each region.
+
+				Looking at the pie chart, the first thing you can notice is that the largest number of all abortions among these regions occurs in Asia. In addition, in Asia and Latin America, more abortions are classified as less safe, in Africa and Oceania as unsafe, while in Europe they are classified as safe. This trend can be explained by the fact that in Europe the number of developed countries significantly predominates than in any other region of the world, that is, safe abortions are so affordable that people practically do not resort to unsafe ones. At the same time, it is necessary to take into account the fact that in some countries of the world abortions are completely prohibited, in some countries abortions are permissible under certain conditions, and women have to resort to illegal methods that are unsafe for health. Most of these countries belong to the regions of Asia, Africa, Latin America and Oceania.
+				</p>
+		</div>
+		
+	</div>
+	<br>
+	<div class="groupBar_2">
+		<div> </div> 
+		<div class="for_third graph">
+			<ul class="bar_info">
+				<li class="bar_info_item pct_abortions">Total abortion death rate</li>
+				<li class="bar_info_item pct_safeabs">Percentage of deaths from safe abortions</li>
+				<li class="bar_info_item pct_unsafeabs">Percentage of deaths from less safe abortions</li>
+			</ul>
+		</div>
+	</div>
+	
+	<div class="groupBar_2">
+		<div> </div>
+		<div id="groupBar"></div>
+	</div>
+	<div>
+		<div class="map_range">
+			<div class="map_range_item map_range_min">min</div>
+			<div class="map_range_bar">Deaths caused by unsafe abortions</div>
+			<div class="map_range_item map_range_max">max</div>
+		</div>
+		<div id="map"></div>
+	</div>
+	<br>
+	<br>
+	<div class="groupBar_4">
+		<button id="button1">Abortion service costs</button>
+  		<button id="button2">Post abortion care service costs</button>
+		<div id="stackedGroupBar">
+	</div>
+	<br><br>
+	<div id="buttons">
+		<button id="sort-button1">Sort by Column 1</button>
+		<button id="sort-button2">Sort by Column 2</button>
+		<button id="sort-button3">Sort by Column 3</button>
+		<button id="sort-button4">Sort by Column 4</button>
+	</div>
+	<br>
+	<div class="for_table">
+		<div id="table-container"></div>
+	</div>
+	
+
+	<script src="js/d3.v7.min.js"></script>
+	<script src="js/main.js"></script>
+</body>
+</html>
