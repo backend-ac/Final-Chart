@@ -553,6 +553,12 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 		.attr("dx", "10")
 		.attr("dy", "10");
 
+
+
+
+
+	/*--------------- STACKED BAR CHART  ----------------*/
+
 	// Creating stacked bar chart
 	var svg1 = d3.select("#stackedGroupBar")
 		.append("svg")
@@ -639,6 +645,12 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 			.domain([0, d3.max(layers[layers.length - 1], function(d) { return d[1]; })])
 			.range([500, 100]);
 
+		// var y = d3.scaleLinear()
+		// 	.domain([0, d3.max(layers[layers.length - 1], function(d) { return d[1]; })])
+		// 	.range([500, 100]);
+
+
+
 		var xScale = d3.scaleBand()
 			.domain(data.map(function(d) { return d.geo; }))
 			.range([50, 750])
@@ -648,19 +660,64 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 			.data(layers)
 			.style("fill", colors1);
 
-		var rects = groups.selectAll("rect")
-			.data(function(d) { return d; });
+		// var rects = groups.selectAll("rect")
+		// 	.data(function(d) { return d; });
 
 		const t = d3.transition().duration(700);
 
-		rects.enter()
-			.append("rect")
-			.merge(rects)
-			.transition(t)
-			.attr("x", function(d) { return xScale(d.data.geo); })
-			.attr("y", function(d) { return yScale(d[1]); })
-			.attr("height", function(d) { return yScale(d[0]) - yScale(d[1]); })
-			.attr("width", xScale.bandwidth());
+		// rects.enter()
+		// 	.append("rect")
+		// 	.merge(rects)
+		// 	.transition(t)
+		// 	.attr("x", function(d) { return xScale(d.data.geo); })
+		// 	.attr("y", function(d) { return yScale(d[1]); })
+		// 	.attr("height", function(d) { return yScale(d[0]) - yScale(d[1]); })
+		// 	.attr("width", xScale.bandwidth());
+
+		var rects = groups.selectAll("rect")
+			.data(function(d) { return d; })
+			.join(
+				enter => enter.append('rect')
+	   //  		.attr("class", 'bar_item')
+				// .attr("x", d => xScale(d.label))
+				// .attr("y", d => yScale(d.value))
+				// .attr("height", 0)
+				// .attr("width", xScale.bandwidth())
+				// .attr("fill", d => colors(d.label))
+	   //  		.call(enter => enter.transition(t)
+	   //  		.attr("height", d => yScale(0) - yScale(d.value))),
+	   			.append("rect")
+				.merge(rects)
+				.transition(t)
+			
+	    		update => update.transition(t)
+	    		.attr("x", function(d) { return xScale(d.data.geo); })
+				.attr("y", function(d) { return yScale(d[1]); })
+				.attr("height", function(d) { return yScale(d[0]) - yScale(d[1]); })
+				.attr("width", xScale.bandwidth()),
+	    		exit => exit.transition(t)
+	    		.attr("y", yScale(0))
+	    		.attr("height", 0)
+	    		.remove()
+			);
+
+		// rects.enter()
+		// 	.append("rect")
+		// 	.merge(rects)
+		// 	.transition(t)
+		// 	.attr("x", function(d) { return xScale(d.data.geo); })
+		// 	.attr("y", function(d) { return yScale(d[1]); })
+		// 	.attr("height", function(d) { return yScale(d[0]) - yScale(d[1]); })
+		// 	.attr("width", xScale.bandwidth());
+
+		// var rects = groups.selectAll("rect")
+		// 	.data(function(d) { return d; })
+		// 	.enter()
+		// 	.append("rect")
+		// 	.attr("x", function(d) { return x(d.data.geo); })
+		// 	.attr("y", function(d) { return y(d[1]); })
+		// 	.attr("height", function(d) { return y(d[0]) - y(d[1]); })
+		// 	.attr("width", x.bandwidth());
 			
 		const yAxis = d3.axisLeft(yScale)
 		svg1.transition(t)
@@ -668,21 +725,41 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 			.selectAll("g")
 			.call(g => g.select(".domain"));
 
+
+		// var yAxis1 = d3.axisLeft(y);
+		// svg1.append("g")
+		// 	.attr("transform", "translate(50,0)")
+		// 	.call(yAxis1);
+
 		var xAxis1 = d3.axisBottom(xScale);
 		svg1.append("g")
 			.attr("transform", "translate(0,500)")
 			.selection()
 			.call(xAxis1);
 		
-		groups.on("mouseover", function(d) {
-			d3.select(this).style("fill", '#d6b312');
-		});
+		// groups.on("mouseover", function(d) {
+		// 	d3.select(this).style("fill", '#d6b312');
+		// });
 
-		// Add the mouseout event listener
-		groups.on("mouseout", function(d) {
-			d3.select(this).style("fill", colors1);
-		});
+		// // Add the mouseout event listener
+		// groups.on("mouseout", function(d) {
+		// 	d3.select(this).style("fill", colors1);
+		// });
 	}
+
+
+
+
+
+	/*--------------- STACKED BAR CHART END  ----------------*/
+
+
+
+
+
+
+
+
 
 	//Create map
 
