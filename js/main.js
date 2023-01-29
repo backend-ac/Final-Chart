@@ -606,9 +606,14 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 		.call(xAxis1);
 
 	var yAxis1 = d3.axisLeft(y);
-	svg1.append("g")
-		.attr("transform", "translate(50,0)")
-		.call(yAxis1);
+	// svg1.append("g")
+	// 	.attr("transform", "translate(50,0)")
+	// 	.call(yAxis1);
+
+	const stackBar_yGroup = svg1.append("g")
+		.attr("transform", `translate(45,0)`)
+		.call(yAxis1)
+		.call(g => g.select(".domain").remove());
 
 	groups.append('title').text("HERE");
 
@@ -645,11 +650,6 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 			.domain([0, d3.max(layers[layers.length - 1], function(d) { return d[1]; })])
 			.range([500, 100]);
 
-		// var y = d3.scaleLinear()
-		// 	.domain([0, d3.max(layers[layers.length - 1], function(d) { return d[1]; })])
-		// 	.range([500, 100]);
-
-
 
 		var xScale = d3.scaleBand()
 			.domain(data.map(function(d) { return d.geo; }))
@@ -674,49 +674,23 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 			.attr("height", function(d) { return yScale(d[0]) - yScale(d[1]); })
 			.attr("width", xScale.bandwidth());
 
-		// rects.enter()
-		// 	.append("rect")
-		// 	.merge(rects)
-		// 	.transition(t)
-		// 	.attr("x", function(d) { return xScale(d.data.geo); })
-		// 	.attr("y", function(d) { return yScale(d[1]); })
-		// 	.attr("height", function(d) { return yScale(d[0]) - yScale(d[1]); })
-		// 	.attr("width", xScale.bandwidth());
-
-		// var rects = groups.selectAll("rect")
-		// 	.data(function(d) { return d; })
-		// 	.enter()
-		// 	.append("rect")
-		// 	.attr("x", function(d) { return xScale(d.data.geo); })
-		// 	.attr("y", function(d) { return yScale(d[1]); })
-		// 	.attr("height", function(d) { return yScale(d[0]) - yScale(d[1]); })
-		// 	.attr("width", xScale.bandwidth());
-
 		var xAxis1 = d3.axisBottom(xScale);
 		svg1.append("g")
 			.attr("transform", "translate(0,500)")
 			.selection()
 			.call(xAxis1);
 			
-		// const yAxis = d3.axisLeft(yScale)
-		// svg1.transition(t)
-		// 	.call(yAxis)
-		// 	.selectAll("g")
-		// 	.call(g => g.select(".domain"));
 
 		var yAxis1 = d3.axisLeft(yScale);
-		svg1.append("g")
-			.attr("transform", "translate(50,0)")
-			.selection()
-			.call(yAxis1);
-			// .call(g => g.select(".domain").remove());
-
-
-		// var yAxis1 = d3.axisLeft(y);
 		// svg1.append("g")
 		// 	.attr("transform", "translate(50,0)")
+		// 	.selection()
 		// 	.call(yAxis1);
 
+		stackBar_yGroup.transition(t)
+	    	.call(yAxis1)
+	    	.selection()
+	    	.call(g => g.select(".domain").remove());
 		
 		
 		// groups.on("mouseover", function(d) {
