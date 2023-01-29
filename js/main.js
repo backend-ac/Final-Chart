@@ -707,7 +707,9 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 		var yAxis1 = d3.axisLeft(yScale);
 		svg1.append("g")
 			.attr("transform", "translate(50,0)")
-			.call(yAxis1);
+			.call(yAxis1)
+			.selection()
+			.call(g => g.select(".tick").remove());
 
 
 		// var yAxis1 = d3.axisLeft(y);
