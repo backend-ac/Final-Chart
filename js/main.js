@@ -705,11 +705,11 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 		// 	.call(g => g.select(".domain"));
 
 		var yAxis1 = d3.axisLeft(yScale);
-		groups.append("g")
+		svg1.append("g")
 			.attr("transform", "translate(50,0)")
-			.call(yAxis1)
 			.selection()
-			.call(g => g.select(".domain").remove());
+			.call(yAxis1);
+			// .call(g => g.select(".domain").remove());
 
 
 		// var yAxis1 = d3.axisLeft(y);
